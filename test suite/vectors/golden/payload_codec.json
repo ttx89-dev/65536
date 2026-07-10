@@ -1,0 +1,13 @@
+{
+  "multi_write_read_0x1111": "616c706861",
+  "multi_write_read_0x2222": "62657461",
+  "multi_write_read_0x3333": "67616d6d61",
+  "payload_descriptors_bin_size": 983040,
+  "payload_heap_bin_size": 65,
+  "read_none_64B_content_hex": "abababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababababab",
+  "read_none_64B_match": true,
+  "read_none_64B_outcome": "VALID",
+  "read_sum8_64B_match": true,
+  "write_none_64B_addr": 4368,
+  "write_sum8_64B_addr": 4640
+}
