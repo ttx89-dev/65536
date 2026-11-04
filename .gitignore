@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 *.pyo
 .julia/
+.pytest_cache/
+.hypothesis/
+conversation.md
