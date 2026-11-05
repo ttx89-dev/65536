@@ -39,7 +39,7 @@ here**.
 | `ontology.md`, `structure.md`, `hierarchy.md` | The three design documents: the structural theory of information, the structural framework, and the ingestion methodology |
 | `jl/` | The Python↔Julia parity sources used by `tests/parity_check.py`: `bootstrap_block.jl`, `payload_codec.jl`, `content_store.jl`, plus self-test runners (`run_*.jl`, `run_bench.jl`) |
 | `tests/jl/` | Self-contained copies of the three module sources that run their own self-tests when executed directly (`julia tests/jl/content_store.jl`) — all three verified exit 0 under Julia 1.12.6 on 2026-11-05 |
-| `tests/` | 129 pytest tests; `parity_check.py` (15 cross-language checks, three modes); benchmarks in `bench/`; three demos; golden vectors in `vectors/golden/` |
+| `tests/` | 129 pytest tests — including the property suite (`test_properties.py`); `parity_check.py` (15 cross-language checks, three modes); benchmarks in `bench/`; the golden-vector generator `generate_golden.py` feeding `vectors/golden/`; three demos in `demos/` |
 | `experiments/` | `font_bitmap.py` (a font generator for the two-glyph protocol), `glyph_protocol.py`, `two_glyph_test.py` |
 | `tools/`, `assets/` | Asset generator (`make_doc_assets.py`) and generated assets (banner, complete-cmap symbol sheet, `font-visual-test.png`) |
 | `prior/` | Superseded documents kept verbatim for provenance (`loadbearing_proof.md`) |
