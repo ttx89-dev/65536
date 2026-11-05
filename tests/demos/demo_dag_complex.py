@@ -8,15 +8,15 @@ Builds a 13-node dependency DAG and exercises:
   - Readback and dep verification across all nodes
   - Content-store dedup on duplicate payloads
 
-Run:   python "test suite/demos/demo_dag_complex.py"       (from 65536/)
-       python demo_dag_complex.py                          (from test suite/demos/)
+Run:   python "tests/demos/demo_dag_complex.py"       (from 65536/)
+       python demo_dag_complex.py                          (from tests/demos/)
 ═══════════════════════════════════════════════════════════════════════════════
 """
 
 import sys, os
-# Need paths to both test suite/ (for payload_codec etc.) and project root (for hierarchy.py)
+# Need paths to both tests/ (for payload_codec etc.) and project root (for hierarchy.py)
 _demo_dir = os.path.dirname(__file__)
-sys.path.insert(0, os.path.join(_demo_dir, ".."))        # test suite/
+sys.path.insert(0, os.path.join(_demo_dir, ".."))        # tests/
 sys.path.insert(0, os.path.join(_demo_dir, "..", ".."))  # project root
 
 from bootstrap_block import BootstrapBlock, ChecksumAlgo

@@ -5,8 +5,8 @@ demo_content_identity.py — Content identity & dedup exploration
 Explores FNV-1a content-addressed storage: exact dedup, content-dependent
 addressing, hash collision bounds, and address-space utilisation.
 
-Run:   python "test suite/demos/demo_content_identity.py"  (from 65536/)
-       python demo_content_identity.py                     (from test suite/demos/)
+Run:   python "tests/demos/demo_content_identity.py"  (from 65536/)
+       python demo_content_identity.py                     (from tests/demos/)
 ═══════════════════════════════════════════════════════════════════════════════
 """
 

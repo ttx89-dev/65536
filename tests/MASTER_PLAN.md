@@ -1,6 +1,15 @@
 # 65536 Test Suite — Master Architecture Plan
 **Version 1.0 | July 2026**
 
+**Status note (2026-11-05, documentation pass):** the original architecture plan,
+kept as history. The tree it describes now lives at `tests/` (renamed from
+`"test suite/"`); the suite currently ships as pytest modules (129 tests), a
+cross-language parity harness (`parity_check.py` — 15/15 checks under Julia
+1.12.6), benchmarks in `bench/`, three demos, and golden vectors in
+`vectors/golden/`. Plan items that did not ship (e.g. `run_all.py`,
+`test_edge_cases.py`, the vector-loader modules) are marked by their absence;
+the repository README documents the tree as it actually is.
+
 ---
 
 ## I. Design Philosophy
@@ -131,6 +140,10 @@ which does not exist in Julia 1.12.6. The test MUST detect this and:
 - Provide the corrected import (`CRC32c.crc32c`) as a verified alternative
 - Document the discrepancy in the cross-language report
 
+**Verified 2026-11-05:** the shipped Julia sources (`jl/`) contain no
+`Base.Crypto` references, and `python3 tests/parity_check.py` passes
+all 15 checks under Julia 1.12.6 (15/15 with `--py`, 15/15 with `--jl`).
+
 ### 4.4 Edge Cases & Fuzzing
 
 | Category | Test |
@@ -240,24 +253,24 @@ $ python3 run_all.py
 ───────────────────────────────────────────
   UNIT TESTS
 ───────────────────────────────────────────
-  ✓ test_bootstrap.test_block_creation (2.3ms)
-  ✓ test_bootstrap.test_slot_crud (4.1ms)
+  [OK] test_bootstrap.test_block_creation (2.3ms)
+  [OK] test_bootstrap.test_slot_crud (4.1ms)
   ... (all test results)
 ───────────────────────────────────────────
   INTEGRATION
 ───────────────────────────────────────────
-  ✓ test_integration.test_pipeline
+  [OK] test_integration.test_pipeline
   ...
 ───────────────────────────────────────────
   CROSS-LANGUAGE PARITY
 ───────────────────────────────────────────
-  ✓ test_cross_language.test_bootstrap_parity
-  ⚠ test_cross_language.test_julia_crc_compat [NOT RUN — no Base.Crypto in 1.12]
+  [OK] test_cross_language.test_bootstrap_parity
+  [NOTE] test_cross_language.test_julia_crc_compat [NOT RUN — no Base.Crypto in 1.12]
   ...
 ───────────────────────────────────────────
   EDGE CASES
 ───────────────────────────────────────────
-  ✓ test_edge_cases.test_zero_length
+  [OK] test_edge_cases.test_zero_length
   ...
 ───────────────────────────────────────────
   BENCHMARKS
@@ -268,9 +281,9 @@ $ python3 run_all.py
 ───────────────────────────────────────────
   EXPERIMENTS
 ───────────────────────────────────────────
-  ✓ glyph_protocol.test_glyph_mint
-  ✓ glyph_protocol.test_glyph_roundtrip
-  ✓ font_bitmap.test_bitmap_storage
+  [OK] glyph_protocol.test_glyph_mint
+  [OK] glyph_protocol.test_glyph_roundtrip
+  [OK] font_bitmap.test_bitmap_storage
 ═══════════════════════════════════════════════════════
   RESULTS: 47 passed, 0 failed, 2 skipped, 3 benchmarks
 ═══════════════════════════════════════════════════════
@@ -296,6 +309,8 @@ $ python3 run_all.py
    which does not exist in Julia 1.12.6. The stdlib `CRC32c` module provides
    `CRC32c.crc32c()` as a drop-in. Tests document this and verify the
    alternative.
+   *(Verified 2026-11-05: no `Base.Crypto` references remain in the shipped
+   sources; the full parity run is 15/15 under Julia 1.12.6.)*
 2. **No Base64 in Julia 1.12:** Python's base64-encoded key serialization
    has no direct Julia equivalent. Testing uses hex encoding as the
    language-neutral format.

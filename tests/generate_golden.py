@@ -9,7 +9,7 @@ Generates known-good reference blobs + JSON expectations for:
   • Content store    — write/read with FNV1a-64 hashing, deduplication
 
 Output:
-  test suite/vectors/golden/
+  tests/vectors/golden/
     bootstrap_block.json   — key-value expectations
     payload_codec.json     — key-value expectations
     content_store.json     — key-value expectations

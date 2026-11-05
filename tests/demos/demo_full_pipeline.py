@@ -6,8 +6,8 @@ Writes content through all three storage layers and reads it back.
 Demonstrates the complete write→read→verify lifecycle across the 65536
 addressing framework.
 
-Run:   python "test suite/demos/demo_full_pipeline.py"       (from 65536/)
-       python demo_full_pipeline.py                          (from test suite/demos/)
+Run:   python "tests/demos/demo_full_pipeline.py"       (from 65536/)
+       python demo_full_pipeline.py                          (from tests/demos/)
 ═══════════════════════════════════════════════════════════════════════════════
 """
 

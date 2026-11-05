@@ -2,6 +2,11 @@
 
 Generated: 2026-07-08
 
+**Status note (2026-11-05, documentation pass):** emoji status markers were
+converted to ASCII ([PASS]/[OK]/[PARTIAL]); §1.1's "Julia not in parity runner"
+note is superseded — `parity_check.py` now exercises all three layers in Julia
+and the full run passes 15/15 under Julia 1.12.6.
+
 ---
 
 ## 1. Parity Verification Status
@@ -11,17 +16,20 @@ All 15 cross-language parity tests pass:
 
 | Layer | Tests | Python | Julia |
 |-------|-------|--------|-------|
-| Bootstrap Block | 7 (hex, parse, decompose ×5) | ✅ | ✅ (hex-identical) |
-| Payload Codec | 4 (NONE write/read, SUM8 write/read) | ✅ | 🟡 Julia not in parity runner |
-| Content Store | 4 (FNV-1a hash, write, read ×2) | ✅ | 🟡 Julia not in parity runner |
+| Bootstrap Block | 7 (hex, parse, decompose ×5) | [PASS] | [PASS] (hex-identical) |
+| Payload Codec | 4 (NONE write/read, SUM8 write/read) | [PASS] | [PASS] (hex-identical; verified 2026-11-05) |
+| Content Store | 4 (FNV-1a hash, write, read ×2) | [PASS] | [PASS] (hex-identical; verified 2026-11-05) |
 
-**Note:** Julia payload_codec and content_store parity is NOT yet exercised by
-`parity_check.py` — only Python tests cover those layers. The Julia `.jl` files
-exist and pass their own self-tests, but the parity harness doesn't call them.
+**Note (updated 2026-11-05):** `parity_check.py` does drive all three layers in
+Julia today — payload write/read (NONE, SUM8) and content-store hash/write/read
+run through `jl/run_payload_tests.jl` and `jl/run_content_tests.jl` and arrive
+byte-identical. The note above predates that harness; kept for history — trust
+this note for current truth.
 
-**Run commands:**
-- `python parity_check.py --py` → 15/15 pass
-- `python parity_check.py --jl` → 7/7 pass (bootstrap block only)
+**Run commands (verified 2026-11-05, from the repository root):**
+- `python3 tests/parity_check.py` (Python + Julia) → 15 passed, 0 failed
+- `python3 tests/parity_check.py --py` → 15 passed, 0 failed
+- `python3 tests/parity_check.py --jl` → 15 passed, 0 failed
 
 ### 1.2 Python vs Julia — Speed (NOT YET BENCHMARKED)
 No cross-language benchmark exists. `bench_performance.py` only benchmarks the
